@@ -11,9 +11,9 @@ const api = {
 function App() {
   return (
     <>
-      <Header></Header>
+      <Header />
       <Container></Container>
-      <Footer></Footer>
+      <Footer />
     </>
   );
 }
