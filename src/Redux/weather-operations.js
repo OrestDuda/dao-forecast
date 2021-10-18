@@ -14,7 +14,7 @@ const api_key = process.env.REACT_APP_API_KEY;
 const getWeather = (query) => (dispatch) => {
   dispatch(getWeatherRequest());
   axios
-    .get(`${api_ulr}forecast?q=${query}&cnt=7&nits=metric&appid=${api_key}`)
+    .get(`${api_ulr}weather?q=${query}&nits=metric&appid=${api_key}`)
     .then(({ data }) => dispatch(getWeatherSuccess(data)))
     .catch((error) => dispatch(getWeatherError(error)));
 };
