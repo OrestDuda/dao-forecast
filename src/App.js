@@ -3,36 +3,23 @@ import Header from "./components/Header/Header";
 import Container from "./components/Container/Container";
 import Footer from "./components/Footer/Footer";
 import Weather from "./components/Weather/Weather";
+import { useDispatch } from "react-redux";
+import weatherOperations from "./Redux/weather-operations";
 import "./App.scss";
 
 function App() {
-  const [query, setQuery] = useState("");
-  const [weather, setWeather] = useState({});
-  const [location, setLocation] = useState({});
+  const dispatch = useDispatch();
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(function (position) {
-      setLocation({
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude,
-      });
+      dispatch(
+        weatherOperations.getUserWeather({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+        })
+      );
     });
   }, []);
-
-  const api_ulr = process.env.REACT_APP_API_URL;
-  const api_key = process.env.REACT_APP_API_KEY;
-
-  // const search = (evt) => {
-  //   if (evt.key === "Enter") {
-  //     fetch(`${api.base}weather?q=${query}&nits=metric&APPID=${api.key}`)
-  //       .then((res) => res.json())
-  //       .then((result) => {
-  //         setWeather(result);
-  //         setQuery("");
-  //         console.log(result);
-  //       });
-  //   }
-  // };
 
   return (
     <>

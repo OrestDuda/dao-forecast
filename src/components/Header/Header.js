@@ -20,6 +20,17 @@ function Header() {
     dispatch(weatherOperations.getWeather(query));
     setQuery("");
   };
+
+  const onMyWeatherClick = () => {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      dispatch(
+        weatherOperations.getUserWeather({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+        })
+      );
+    });
+  };
   return (
     <div className={styles.header}>
       <div className={styles.logo}>
@@ -43,7 +54,9 @@ function Header() {
           Search
         </Button>
       </InputGroup>
-      <Button variant="outline-secondary">My Weather</Button>{" "}
+      <Button variant="outline-secondary" onClick={() => onMyWeatherClick()}>
+        My Weather
+      </Button>{" "}
     </div>
   );
 }
