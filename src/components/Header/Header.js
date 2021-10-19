@@ -47,6 +47,7 @@ function Header() {
           onKeyPress={search}
         />
         <Button
+          className={styles.button}
           variant="outline-secondary"
           id="button-addon2"
           onClick={() => onSearchClick(query)}
@@ -54,7 +55,11 @@ function Header() {
           Search
         </Button>
       </InputGroup>
-      <Button variant="outline-secondary" onClick={() => onMyWeatherClick()}>
+      <Button
+        className={styles.button}
+        variant="outline-secondary"
+        onClick={() => onMyWeatherClick()}
+      >
         My Weather
       </Button>{" "}
     </div>
